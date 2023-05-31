@@ -10,8 +10,8 @@ public interface ConsApi {
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
     public ResponseEntity addNewConsaltant(@RequestBody ConsaltantReqDto consaltantReqDto);
 
-    @RequestMapping(value = "/{ID}", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity getConsaltant(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size);
+    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity getAllConsaltant(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size);
 
     @RequestMapping(value = "/{ID}", method = RequestMethod.PUT, produces = "application/json")
     public ResponseEntity editConsaltant(@PathVariable("ID") Long ID, @RequestBody ConsaltantReqDto consaltantReqDto);

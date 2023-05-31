@@ -27,7 +27,7 @@ public class UserService {
 
         this.modelMapper = modelMapper;
     }
-    public List<User> getAll(int page, int size){
+    public List<User> getUser(int page, int size){
         Pageable pageable = PageRequest.of(page,size);
         UserRespondDto userRespondDto = null;
         List list = new ArrayList();

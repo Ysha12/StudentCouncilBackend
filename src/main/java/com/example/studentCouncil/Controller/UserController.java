@@ -2,7 +2,6 @@ package com.example.studentCouncil.Controller;
 
 import com.example.studentCouncil.Controller.Api.UserApi;
 import com.example.studentCouncil.Dto.UserReqDto;
-import com.example.studentCouncil.Model.User;
 import com.example.studentCouncil.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +17,7 @@ public class UserController implements UserApi {
     }
     @Override
     public ResponseEntity getUser(int page, int size){
-        return ResponseEntity.ok().body(userService.getAll(page,size));
+        return ResponseEntity.ok().body(userService.getUser(page,size));
     }
 
     @Override

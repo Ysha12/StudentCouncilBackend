@@ -14,7 +14,7 @@ public class ConsController implements ConsApi {
     {
         this.consaltantService=consaltantService;
     }
-    public ResponseEntity getConsaltant(int page, int size){
+    public ResponseEntity getAllConsaltant(int page, int size){
         return ResponseEntity.ok().body(consaltantService.getAllConsaltant(page,size));
     }
     public ResponseEntity addNewConsaltant(ConsaltantReqDto cons) {

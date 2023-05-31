@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RequestMapping("User")
 public interface UserApi {
+
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
     public ResponseEntity addNewUser(@RequestBody UserReqDto user);
 
