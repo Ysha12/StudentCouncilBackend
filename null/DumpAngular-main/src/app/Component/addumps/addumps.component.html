@@ -1,0 +1,150 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3 sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">
+              <span data-feather="home" class="align-text-bottom"></span>
+              <h1>SpiceTech</h1>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admunicipal">
+              <span data-feather="file" class="align-text-bottom"></span>
+              Municipal
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="shopping-cart" class="align-text-bottom"></span>
+              Dumps
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="users" class="align-text-bottom"></span>
+              Comments
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+              Reports
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex bg-faded rounded justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2"></h1>
+        <div class="btn-toolbar mb-0 mb-md-0">
+
+          <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary bg-dark text-white ">Log out</button>
+          </div>
+
+          <div class="dropdown">
+            <a class="btn btn-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Profile
+            </a>
+
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Action</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-xl-12 mx-auto">
+          <div class="cta-inner bg-faded text-center rounded">
+            <h2 class="section-heading mb-0">
+              <span class="section-heading-upper">REGISTERED DUMPS</span>
+              <span class="section-heading-lower">LIST</span>
+            </h2>
+            <div>
+              <a routerLink="/dumpsform" class="button ">Button</a>
+            </div>
+
+            <div class="col-xl-11 mx-auto">
+              <h2></h2>
+
+              <table class="col-sm-12 col-md-12 col-lg-12">
+                <tr>
+                  <th scope="col">DumpName</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Latitude</th>
+                  <th scope="col">Longitude</th>
+                  <th scope="col">District</th>
+                  <th scope="col">Region</th>
+                  <th scope="col">Action</th>
+                </tr>
+                <tr  *ngFor="let data of dumps">
+                  <td>{{data.dumpName}}</td>
+                  <td>{{data.dumpAddress}}</td>
+                  <td>{{data.dumpLocation}}</td>
+                  <td>{{data.dumpLatitude}}</td>
+                  <td>{{data.dumpLongitude}}</td>
+                  <td>{{data.dumpDistrict}}</td>
+                  <td>{{data.dumpRegion}}</td>
+                  <td class="text-end">
+                    <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#editFormModal" (click)="editDump(data)">Edit</button>
+<!--                    <a href="" class="btn btn-outline-info btn-rounded"><i class="fas fa-pen"></i>Edit</a>-->
+                    <a href="" class="btn btn-outline-danger btn-rounded"><i class="fas fa-trash"></i>Delete</a>
+                  </td>
+                </tr>
+              </table>
+
+            </div>
+
+            <div class="modal fade" id="editFormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Owner Info</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form [formGroup]="dumpForm" (ngSubmit)="saveNewDump()">
+                      <div class="mb-3">
+                        <label for="dumpName" class="form-label">Dump Name</label>
+                        <input type="text" class="form-control" id="dumpName" formControlName="dumpName">
+                      </div>
+                      <div class="mb-3">
+                        <label for="dumpAddress" class="form-label">Dump Address</label>
+                        <input type="text" class="form-control" id="dumpAddress" formControlName="dumpAddress">
+                      </div>
+                      <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="address mb-5">
+
+            </p>
+            <p class="mb-0">
+              <small><em>fbhainde02@gmail.com</em></small>
+              <br />
+              Mchina-Mwanzo, Zanzibar
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>-->
+    </main>
+  </div>
+</div>
+

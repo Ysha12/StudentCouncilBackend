@@ -1,0 +1,185 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3 sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">
+              <span data-feather="home" class="align-text-bottom"></span>
+              <h1>SpiceTech</h1>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admunicipal">
+              <span data-feather="file" class="align-text-bottom"></span>
+              Municipal
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="shopping-cart" class="align-text-bottom"></span>
+              Dumps
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="users" class="align-text-bottom"></span>
+              Comments
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+              Reports
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex bg-faded rounded justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2"></h1>
+        <div class="btn-toolbar mb-0 mb-md-0">
+
+          <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary bg-dark text-white ">Log out</button>
+          </div>
+
+          <div class="dropdown">
+            <a class="btn btn-dark dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Profile
+            </a>
+
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Action</a></li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-xl-12 mx-auto">
+          <div class="cta-inner bg-faded text-center rounded">
+            <h2 class="section-heading mb-0">
+              <span class="section-heading-upper">REGIST MUNICIPAL</span>
+              <span class="section-heading-lower"></span>
+            </h2>
+            <div>
+
+            </div>
+
+            <div class="col-xl-11 mx-auto">
+              <h2></h2>
+<!--//hapa-->
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-header">Municipal Form</div>
+                  <div class="card-body">
+                    <form class="needs-validation" novalidate accept-charset="utf-8">
+                      <div class="row g-2">
+                        <div class="mb-3 col-md-6">
+                          <label class="form-label">First Name</label>
+                          <input type="text" class="form-control" name="firstname" placeholder="enter firstname" required>
+                          <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                          <label class="form-label">Last Name</label>
+                          <input type="text" class="form-control" name="lastname" placeholder="enter lastname" required>
+                         <div class="invalid-feedback"></div>
+                        </div>
+                      </div>
+
+                      <div class="row g-2">
+                        <div class="mb-3 col-md-6">
+                            <label class="form-label">Municipal Name</label>
+                            <input type="text" class="form-control" name="municipalname" placeholder="enter municipal name" required>
+                            <div class="invalid-feedback"></div>
+                          </div>
+                        <div class="mb-3 col-md-6">
+                          <label class="form-label">Email</label>
+                          <input type="email" class="form-control" name="email" placeholder="enter email" required>
+                          <div class="invalid-feedback"></div>
+                        </div>
+                      </div>
+
+                      <div class="mb-3">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-control" name="address" placeholder="1234 Main St, Unit, Building, or Floor" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter your address.</div>
+                      </div>
+                      <div class="row g-2">
+                        <div class="mb-3 col-md-6">
+                          <label  class="form-label">Phone</label>
+                          <input type="text" class="form-control" name="phone" placeholder="(+255) *** ***" required>
+                          <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="mb-3 col-md-4">
+                          <label  class="form-label">Region</label>
+                          <select name="state" class="form-select" required>
+                            <option value="" selected>Choose...</option>
+                            <option value="1">North</option>
+                            <option value="2">Urban & West</option>
+                            <option value="3">South</option>
+                          </select>
+                        <div class="invalid-feedback">Please select a State.</div>
+                        </div>
+                        <div class="mb-3 col-md-2">
+                          <label class="form-label">Zip code</label>
+                          <input type="text" class="form-control" name="zip" placeholder="00000" required>
+                          <div class="invalid-feedback"></div>
+                        </div>
+                      </div>
+                      <div class="mb-3 col-md-4">
+                        <label  class="form-label">District</label>
+                        <select name="state" class="form-select" required>
+                          <option value="" selected>Choose...</option>
+                          <option value="1">Magharibi A</option>
+                          <option value="2">Magharibi B</option>
+                          <option value="3">Kaskazini A</option>
+                          <option value="4">Kaskazini B</option>
+                          <option value="5">Wilaya ya Mjini</option>
+                          <option value="6">Wilaya ya kati</option>
+                          <option value="7">Wilaya ya kusini</option>
+                        </select>
+                        <div class="invalid-feedback">Please select a State.</div>
+                      </div>
+                      <div class="mb-3">
+                        <div class="form-check">
+<!--                          <input class="form-check-input" type="checkbox" value="" id="check1" required>-->
+<!--                          <label class="form-check-label" for="check1">-->
+<!--                            Check me out-->
+<!--                          </label>-->
+                          <div class="invalid-feedback">You must agree before submitting.</div>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!--hapa-->
+            </div>
+
+
+            <p class="address mb-5">
+
+            </p>
+            <p class="mb-0">
+              <small><em>fbhainde02@gmail.com</em></small>
+              <br />
+              Mchina-Mwanzo, Zanzibar
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>-->
+    </main>
+  </div>
+</div>
+
