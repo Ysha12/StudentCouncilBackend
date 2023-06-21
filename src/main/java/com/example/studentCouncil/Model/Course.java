@@ -3,6 +3,7 @@ package com.example.studentCouncil.Model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,4 +19,6 @@ public class Course {
     @ManyToOne(cascade =CascadeType.REFRESH)
     @JoinColumn(name = "universityID", referencedColumnName = "uniID")
     private University university;
+    @OneToMany( mappedBy = "course", fetch = FetchType.LAZY)
+    private List<Category> categoryList;
 }

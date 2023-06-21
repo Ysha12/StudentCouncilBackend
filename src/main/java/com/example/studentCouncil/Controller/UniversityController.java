@@ -16,7 +16,7 @@ public class UniversityController implements UniversityApi {
     public UniversityController (UniversityService universityService) {
         this.universityService=universityService;
     }
-    public ResponseEntity getUniversity(int page, int size){
+    public ResponseEntity getAllUniversity(int page, int size){
         return ResponseEntity.ok().body(universityService.getAllUniversity(page,size));
     }
     public ResponseEntity addNewUniversity(UniversityReqDto uni) {

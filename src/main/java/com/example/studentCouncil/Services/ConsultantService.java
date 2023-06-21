@@ -1,9 +1,8 @@
 package com.example.studentCouncil.Services;
 
 import com.example.studentCouncil.Dto.ConsaltantReqDto;
-import com.example.studentCouncil.Dto.StudentReqDto;
-import com.example.studentCouncil.Model.Consaltant;
-import com.example.studentCouncil.Model.Student;
+import com.example.studentCouncil.Dto.ConsaltantRespondDto;
+import com.example.studentCouncil.Model.Consultant;
 import com.example.studentCouncil.Model.User;
 import com.example.studentCouncil.Repository.ConsaltantRepository;
 import com.example.studentCouncil.Repository.UserRepository;
@@ -21,12 +20,12 @@ import java.util.*;
 //import static jdk.internal.org.jline.utils.Colors.s;
 
 @Service
-public class ConsaltantService {
+public class ConsultantService {
     @Autowired
     private ConsaltantRepository consaltantRepository;
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
-    public ConsaltantService(ConsaltantRepository consaltantRepository, ModelMapper modelMapper, UserRepository userRepository){
+    public ConsultantService(ConsaltantRepository consaltantRepository, ModelMapper modelMapper, UserRepository userRepository){
         this.consaltantRepository= consaltantRepository;
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
@@ -37,31 +36,44 @@ public class ConsaltantService {
         if(!u.isPresent()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id"+"  "+consaltantReqDto.getUsrid()+"   "+"does not exist");
         }
-        Consaltant consaltant = modelMapper.map(consaltantReqDto, Consaltant.class);
+        Consultant consultant = modelMapper.map(consaltantReqDto, Consultant.class);
         User user = u.get();
-        consaltant.setUserID(user);
-        consaltantRepository.save(consaltant);
+        consultant.setUserID(user);
+        consaltantRepository.save(consultant);
 
         Map resp = new HashMap();
         resp.put("resp",Boolean.TRUE);
         return  ResponseEntity.ok().body(resp);
     }
     //view all student
-    public List<Consaltant> getAllConsaltant(int page, int size){
+    public List<Consultant> getAllConsultant(int page, int size){
         Pageable pageable = PageRequest.of(page,size);
+        ConsaltantRespondDto consaltantRespondDto = null;
         List list = new ArrayList();
-        for (Consaltant consaltant : consaltantRepository.findAll(pageable)) {
-            list.add(consaltant);
+        for (Consultant consultant : consaltantRepository.findAll(pageable)) {
+            consaltantRespondDto = modelMapper.map(consultant,ConsaltantRespondDto.class);
+
+            consaltantRespondDto.setF_name(consultant.getUserID().getF_name());
+            consaltantRespondDto.setS_name2(consultant.getUserID().getS_name2());
+            consaltantRespondDto.setL_name(consultant.getUserID().getL_name());
+            consaltantRespondDto.setEmail(consultant.getUserID().getEmail());
+            consaltantRespondDto.setRole(consultant.getUserID().getRole());
+            consaltantRespondDto.setStatus(consultant.getUserID().getStatus());
+            consaltantRespondDto.setPassword(consultant.getUserID().getPassword());
+            consaltantRespondDto.setAddress(consultant.getUserID().getAddress());
+            consaltantRespondDto.setPhoneNumber(consultant.getUserID().getPhoneNumber());
+
+            list.add(consaltantRespondDto);
         }
         return list;
     }
     //edit student
-    public ResponseEntity editConsaltant(Long consId, ConsaltantReqDto consaltantReqDto) throws ResponseStatusException {
-        Optional<Consaltant> p = consaltantRepository.findById(consId);
+    public ResponseEntity editConsultant(Long consId, ConsaltantReqDto consaltantReqDto) throws ResponseStatusException {
+        Optional<Consultant> p = consaltantRepository.findById(consId);
         if(p.isPresent()){
-            Consaltant consaltant  = modelMapper.map(consaltantReqDto,Consaltant.class);
-            consaltant.setConsID(consId);
-            consaltantRepository.save(consaltant);
+            Consultant consultant = modelMapper.map(consaltantReqDto, Consultant.class);
+            consultant.setConsID(consId);
+            consaltantRepository.save(consultant);
         }else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"");
         }
@@ -70,7 +82,7 @@ public class ConsaltantService {
         response.put("response",Boolean.TRUE);
         return  ResponseEntity.ok().body(response);
     }
-    public ResponseEntity deleteConsaltant(Long consId){
+    public ResponseEntity deleteConsultant(Long consId){
         consaltantRepository.deleteById(consId);
 
         Map response=new HashMap();

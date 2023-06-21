@@ -1,5 +1,6 @@
 package com.example.studentCouncil.Services;
 import com.example.studentCouncil.Dto.TipReqDto;
+import com.example.studentCouncil.Dto.TipResDto;
 import com.example.studentCouncil.Model.*;
 import com.example.studentCouncil.Repository.ConsaltantRepository;
 import com.example.studentCouncil.Repository.TipRepository;
@@ -36,7 +37,7 @@ public class TipService {
         Random random = new Random();
         int upperbound = 100;
         int int_random = random.nextInt(upperbound);
-        Optional<Consaltant> u = consaltantRepository.findById(tipReqDto.getConsalt());
+        Optional<Consultant> u = consaltantRepository.findById(tipReqDto.getConsalt());
         if(!u.isPresent()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id"+"  "+tipReqDto.getConsalt()+"   "+"does not exist");
         }
@@ -52,8 +53,8 @@ public class TipService {
         }
 
         Tips tips = modelMapper.map(tipReqDto, Tips.class);
-        Consaltant consaltant = u.get();
-        tips.setConsaltant(consaltant);
+        Consultant consultant = u.get();
+        tips.setConsultant(consultant);
         tips.setName("/Images/" + String.valueOf(int_random) + "." + ext);
         tipRepository.save(tips);
 
@@ -63,9 +64,11 @@ public class TipService {
     }
     public List<Tips> getAllTips(int page, int size){
         Pageable pageable = PageRequest.of(page,size);
+        TipResDto tipResDto = null;
         List list = new ArrayList();
         for (Tips tips : tipRepository.findAll(pageable)) {
-            list.add(tips);
+            tipResDto = modelMapper.map(tips,TipResDto.class);
+            list.add(tipResDto);
         }
         return list;
     }

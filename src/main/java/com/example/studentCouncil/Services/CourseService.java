@@ -1,15 +1,11 @@
 package com.example.studentCouncil.Services;
-
+import com.example.studentCouncil.Dto.ConsaltantRespondDto;
 import com.example.studentCouncil.Dto.CourseReqDto;
-import com.example.studentCouncil.Dto.StudentReqDto;
+import com.example.studentCouncil.Dto.CourseResDto;
 import com.example.studentCouncil.Model.Course;
-import com.example.studentCouncil.Model.Student;
 import com.example.studentCouncil.Model.University;
-import com.example.studentCouncil.Model.User;
 import com.example.studentCouncil.Repository.CourseRepository;
-import com.example.studentCouncil.Repository.StudentRepository;
 import com.example.studentCouncil.Repository.UniversityRepository;
-import com.example.studentCouncil.Repository.UserRepository;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +46,12 @@ public class CourseService {
     }
     public List<Course> getAllCourse(int page, int size){
         Pageable pageable = PageRequest.of(page,size);
+        CourseResDto courseResDto=null;
         List list = new ArrayList();
         for (Course course : courseRepository.findAll(pageable)) {
-            list.add(course);
+            courseResDto = modelMapper.map(course, CourseResDto.class);
+
+            list.add(courseResDto);
         }
         return list;
     }

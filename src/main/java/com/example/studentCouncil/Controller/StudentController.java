@@ -14,7 +14,7 @@ public class StudentController implements StudentApi {
     {
         this.studentService=studentService;
     }
-    public ResponseEntity getStudent(int page, int size){
+    public ResponseEntity getAllStudent(int page, int size){
         return ResponseEntity.ok().body(studentService.getAllStudent(page,size));
     }
 
@@ -28,5 +28,12 @@ public class StudentController implements StudentApi {
     public ResponseEntity deleteStudent(Long stuId){
 
         return ResponseEntity.ok().body(studentService.deleteStudent(stuId));
+    }
+
+//    s
+
+    @Override
+    public ResponseEntity addStudent(StudentReqDto student) {
+        return ResponseEntity.ok().body(studentService.addNewStudent(student));
     }
 }

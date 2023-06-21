@@ -15,6 +15,6 @@ public class Tips {
     private String tipsDescription;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "consaltant", referencedColumnName = "consID")
-    private Consaltant consaltant;
+    @JoinColumn(name = "consultant", referencedColumnName = "consID")
+    private Consultant consultant;
 }

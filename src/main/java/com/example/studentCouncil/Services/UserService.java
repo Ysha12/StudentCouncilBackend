@@ -1,4 +1,6 @@
 package com.example.studentCouncil.Services;
+import com.example.studentCouncil.Dto.AuthResponse;
+import com.example.studentCouncil.Dto.LogInDto;
 import com.example.studentCouncil.Dto.UserReqDto;
 import com.example.studentCouncil.Dto.UserRespondDto;
 import com.example.studentCouncil.Model.User;
@@ -10,6 +12,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -19,13 +23,16 @@ import java.util.*;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+    private UserReqDto userReqDto;
     private final ModelMapper modelMapper;
+    private final JwtService jwtService;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, ModelMapper modelMapper) {
-
+    public UserService(UserRepository userRepository, JwtService jwtService,ModelMapper modelMapper) {
         this.userRepository = userRepository;
-
         this.modelMapper = modelMapper;
+        this.jwtService=jwtService;
     }
     public List<User> getUser(int page, int size){
         Pageable pageable = PageRequest.of(page,size);
@@ -39,6 +46,8 @@ public class UserService {
     }
     public ResponseEntity addNewUser(UserReqDto usr){
         User user = modelMapper.map(usr,User.class);
+        String encPsd = this.passwordEncoder.encode(usr.getPassword());
+        user.setPassword(encPsd);
         userRepository.save(user);
 
         Map resp = new HashMap();
@@ -65,6 +74,30 @@ public class UserService {
         Map response=new HashMap();
         response.put("response",Boolean.TRUE);
         return  ResponseEntity.ok().body(response);
+    }
+
+    public AuthResponse doLogin(LogInDto logInDto) {
+        String rawPassword = logInDto.getPassword();
+        String encodedPassword = userRepository.findPasswordByEmail(logInDto.getEmail());
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        boolean passwordMatches = encoder.matches(rawPassword, encodedPassword);
+        Optional<User> u = userRepository.findByEmail(logInDto.getEmail());
+        if(!u.isPresent()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        Map response = new HashMap();
+        if(passwordMatches){
+            response.put("response",Boolean.TRUE);
+
+        }else{
+            response.put("response",Boolean.FALSE);
+        }
+        User users = modelMapper.map(logInDto, User.class);
+        var jwtToken = jwtService.generateToken(users);
+        return AuthResponse.builder().token(jwtToken).build();
+
     }
 }
 

@@ -1,19 +1,21 @@
 package com.example.studentCouncil.Controller.Api;
-import com.example.studentCouncil.Dto.CourseReqDto;
+
+import com.example.studentCouncil.Dto.CategoryReqDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 @CrossOrigin("*")
-@RequestMapping("/Course")
-public interface CourseApi {
+@RequestMapping("/Category")
+public interface CategoryApi {
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
-    public ResponseEntity addNewCourse(@RequestBody CourseReqDto courseReqDto);
+    public ResponseEntity addNewCategory(@RequestBody CategoryReqDto categoryReqDto);
 
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity getCourse(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size);
+    public ResponseEntity getAllCategory(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size);
 
     @RequestMapping(value = "/{ID}", method = RequestMethod.PUT, produces = "application/json")
-    public ResponseEntity editCourse(@PathVariable("ID") Long ID, @RequestBody CourseReqDto courseReqDto);
+    public ResponseEntity editLoan(@PathVariable("ID") Long ID, @RequestBody CategoryReqDto categoryReqDto);
 
     @RequestMapping(value = "/{ID}", method = RequestMethod.DELETE, produces = "application/json")
-    public ResponseEntity deleteCourse(@PathVariable("ID") Long ID);
+    public ResponseEntity deleteCategory(@PathVariable("ID") Long ID);
 }

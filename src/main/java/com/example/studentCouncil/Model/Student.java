@@ -1,9 +1,6 @@
 package com.example.studentCouncil.Model;
-
 import lombok.Data;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Entity
@@ -18,7 +15,20 @@ public class Student {
     @JoinColumn(name = "userID", referencedColumnName = "userID")
     private User userID;
 
-    @OneToMany( mappedBy = "students", fetch = FetchType.LAZY)
-    private List<StudentConcil> studentConcilList;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "constID", referencedColumnName = "consID")
+    private Consultant constID;
+//
+//    @OneToMany(mappedBy = "students", fetch = FetchType.LAZY)
+//    private List<StudentConcil> studentConcilList;
 
+
+    //    student  + consultant
+//    @ManyToMany
+//    private Set<Consultant> consultants;
+//
+//
+//    public void assignConsultantToStudent(Consultant consultant) {
+//        this.consultants.add(consultant);
+//    }
 }

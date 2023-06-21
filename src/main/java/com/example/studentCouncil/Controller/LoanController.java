@@ -1,9 +1,7 @@
 package com.example.studentCouncil.Controller;
 
 import com.example.studentCouncil.Controller.Api.LoanApi;
-import com.example.studentCouncil.Dto.ConsaltantReqDto;
 import com.example.studentCouncil.Dto.LoanReqDto;
-import com.example.studentCouncil.Services.ConsaltantService;
 import com.example.studentCouncil.Services.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +14,7 @@ public class LoanController implements LoanApi {
     public LoanController (LoanService loanService) {
         this.loanService=loanService;
     }
-    public ResponseEntity getLoan(int page, int size){
+    public ResponseEntity getAllLoan(int page, int size){
         return ResponseEntity.ok().body(loanService.getAllLoan(page,size));
     }
     public ResponseEntity addNewLoan(LoanReqDto lon) {

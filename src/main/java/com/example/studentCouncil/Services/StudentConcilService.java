@@ -1,6 +1,6 @@
 package com.example.studentCouncil.Services;
 import com.example.studentCouncil.Dto.StudentConcilReqDto;
-import com.example.studentCouncil.Dto.TipReqDto;
+import com.example.studentCouncil.Dto.StudentConcilResDto;
 import com.example.studentCouncil.Model.*;
 import com.example.studentCouncil.Repository.ConsaltantRepository;
 import com.example.studentCouncil.Repository.StudentConcilRepo;
@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.nio.file.Files;
 import java.util.*;
 
 @Data
@@ -34,7 +33,7 @@ public class StudentConcilService {
         this.studentRepository=studentRepository;
     }
     public ResponseEntity addNewStudentConcil(StudentConcilReqDto studentConcilReqDto){
-        Optional<Consaltant> u = consaltantRepository.findById(studentConcilReqDto.getConsID());
+        Optional<Consultant> u = consaltantRepository.findById(studentConcilReqDto.getConsID());
         if(!u.isPresent()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id"+"  "+studentConcilReqDto.getConsID()+"   "+"does not exist");
         }
@@ -45,14 +44,14 @@ public class StudentConcilService {
         }
 
         StudentConcil studentConcil = modelMapper.map(studentConcilReqDto, StudentConcil.class);
-        Consaltant consaltant = u.get();
-        studentConcil.setConsaltant(consaltant);
+        Consultant consultant = u.get();
+        studentConcil.setConsultant(consultant);
         studentConcilRepo.save(studentConcil);
 
         StudentConcil studentConcil1 = modelMapper.map(studentConcilReqDto, StudentConcil.class);
         Student student = s.get();
         studentConcil.setStudents(student);
-        studentConcilRepo.save(studentConcil);
+        studentConcilRepo.save(studentConcil1);
 
         Map resp = new HashMap();
         resp.put("resp",Boolean.TRUE);
@@ -60,9 +59,11 @@ public class StudentConcilService {
     }
     public List<StudentConcil> getAllStudentConcil(int page, int size){
         Pageable pageable = PageRequest.of(page,size);
+        StudentConcilResDto studentConcilResDto = null;
         List list = new ArrayList();
         for (StudentConcil studentConcil : studentConcilRepo.findAll(pageable)) {
-            list.add(studentConcil);
+            studentConcilResDto = modelMapper.map(studentConcil,StudentConcilResDto.class);
+            list.add(studentConcilResDto);
         }
         return list;
     }

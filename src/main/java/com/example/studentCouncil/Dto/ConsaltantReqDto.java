@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class ConsaltantReqDto {
-    private String WorkingExperience;
+    private String working_experience;
     private Long usrid;
 }

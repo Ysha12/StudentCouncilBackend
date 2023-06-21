@@ -1,5 +1,6 @@
 package com.example.studentCouncil.Services;
 import com.example.studentCouncil.Dto.UniversityReqDto;
+import com.example.studentCouncil.Dto.UniversityRespondDto;
 import com.example.studentCouncil.Model.University;
 import com.example.studentCouncil.Model.User;
 import com.example.studentCouncil.Repository.UniversityRepository;
@@ -43,9 +44,11 @@ public class UniversityService {
     }
     public List<University> getAllUniversity(int page, int size){
         Pageable pageable = PageRequest.of(page,size);
+        UniversityRespondDto universityRespondDto = null;
         List list = new ArrayList();
         for (University university : universityRepository.findAll(pageable)) {
-            list.add(university);
+            universityRespondDto = modelMapper.map(university,UniversityRespondDto.class);
+            list.add(universityRespondDto);
         }
         return list;
     }

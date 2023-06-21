@@ -1,6 +1,7 @@
 package com.example.studentCouncil.Controller;
 
 import com.example.studentCouncil.Controller.Api.UserApi;
+import com.example.studentCouncil.Dto.LogInDto;
 import com.example.studentCouncil.Dto.UserReqDto;
 import com.example.studentCouncil.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,10 @@ public class UserController implements UserApi {
     public ResponseEntity deleteUser(Long userId){
 
         return ResponseEntity.ok().body(userService.deleteUser(userId));
+    }
+    public ResponseEntity login(LogInDto logInDto) {
+        return ResponseEntity.ok().body(userService.doLogin(logInDto));
+
     }
 }
 

@@ -7,4 +7,5 @@ public class StudentConcilResDto {
     private Long stuConcilID;
     private Long stuID;
     private Long consID;
+
 }

@@ -12,6 +12,7 @@ public class Loan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long loanID;
     private String loanType;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userID", referencedColumnName = "userID")
     private User userID;

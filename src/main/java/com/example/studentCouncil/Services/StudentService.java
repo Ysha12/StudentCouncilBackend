@@ -1,8 +1,11 @@
 package com.example.studentCouncil.Services;
 
 import com.example.studentCouncil.Dto.StudentReqDto;
+import com.example.studentCouncil.Dto.StudentRespondDto;
+import com.example.studentCouncil.Model.Consultant;
 import com.example.studentCouncil.Model.Student;
 import com.example.studentCouncil.Model.User;
+import com.example.studentCouncil.Repository.ConsaltantRepository;
 import com.example.studentCouncil.Repository.StudentRepository;
 import com.example.studentCouncil.Repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -20,10 +23,11 @@ import java.util.*;
 public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
+    private ConsaltantRepository consaltantRepository;
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
-    public StudentService(StudentRepository studentRepository, ModelMapper modelMapper, UserRepository userRepository){
-        this.studentRepository= studentRepository;
+    public StudentService(ConsaltantRepository consaltantRepository,StudentRepository studentRepository, ModelMapper modelMapper, UserRepository userRepository){
+        this.consaltantRepository= consaltantRepository;
         this.studentRepository = studentRepository;
         this.modelMapper = modelMapper;
         this.userRepository = userRepository;
@@ -35,6 +39,16 @@ public class StudentService {
      if(!u.isPresent()){
          throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id"+"  "+studentReqDto.getUser_id()+"   "+"does not exist");
      }
+
+        Optional<Consultant> c = consaltantRepository.findById(studentReqDto.getConst_id());
+        if(!u.isPresent()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id"+"  "+studentReqDto.getConst_id()+"   "+"does not exist");
+        }
+        Student student1=modelMapper.map(studentReqDto,Student.class);
+        Consultant consultant =c.get();
+        student1.setConstID(consultant);
+        studentRepository.save(student1);
+
         Student student = modelMapper.map(studentReqDto, Student.class);
         User user = u.get();
         student.setUserID(user);
@@ -47,9 +61,20 @@ public class StudentService {
     //view all student
     public List<Student> getAllStudent(int page, int size){
         Pageable pageable = PageRequest.of(page,size);
+        StudentRespondDto studentRespondDto = null;
         List list = new ArrayList();
         for (Student student : studentRepository.findAll(pageable)) {
-            list.add(student);
+            studentRespondDto = modelMapper.map(student, StudentRespondDto.class);
+
+            studentRespondDto.setF_name(student.getUserID().getF_name());
+            studentRespondDto.setS_name2(student.getUserID().getS_name2());
+            studentRespondDto.setL_name(student.getUserID().getL_name());
+            studentRespondDto.setEmail(student.getUserID().getEmail());
+            studentRespondDto.setRole(student.getUserID().getRole());
+            studentRespondDto.setAddress(student.getUserID().getAddress());
+            studentRespondDto.setPhoneNumber(student.getUserID().getPhoneNumber());
+
+            list.add(studentRespondDto);
         }
         return list;
     }

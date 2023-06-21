@@ -1,7 +1,7 @@
 package com.example.studentCouncil.Controller.Api;
 
+import com.example.studentCouncil.Dto.LogInDto;
 import com.example.studentCouncil.Dto.UserReqDto;
-import com.example.studentCouncil.Model.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,4 +20,7 @@ public interface UserApi {
 
     @RequestMapping(value = "/{ID}", method = RequestMethod.DELETE, produces = "application/json")
     public ResponseEntity deleteUser(@PathVariable("ID") Long ID);
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ResponseEntity login(@RequestBody LogInDto logInDto );
 }
