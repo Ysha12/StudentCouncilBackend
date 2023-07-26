@@ -6,6 +6,6 @@ import lombok.Data;
 public class StudentReqDto {
     private String LevelOfEducation;
     private Long user_id;
-    private Long const_id;
+//    private Long const_id;
 
 }

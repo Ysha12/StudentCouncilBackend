@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Student Consultant Management System"))
+@OpenAPIDefinition(info = @Info(title = "Final Year Project: Student Consultant Management System"))
 
 public class StudentCouncilApplication {
 	@Bean

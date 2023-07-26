@@ -57,7 +57,7 @@ public class ConsultantService {
             consaltantRespondDto.setS_name2(consultant.getUserID().getS_name2());
             consaltantRespondDto.setL_name(consultant.getUserID().getL_name());
             consaltantRespondDto.setEmail(consultant.getUserID().getEmail());
-            consaltantRespondDto.setRole(consultant.getUserID().getRole());
+            //consaltantRespondDto.setRole(consultant.getUserID().getRole());
             consaltantRespondDto.setStatus(consultant.getUserID().getStatus());
             consaltantRespondDto.setPassword(consultant.getUserID().getPassword());
             consaltantRespondDto.setAddress(consultant.getUserID().getAddress());

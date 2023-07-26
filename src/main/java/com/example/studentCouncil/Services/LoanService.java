@@ -53,7 +53,7 @@ public class LoanService {
             loanResDto.setS_name2(loan.getUserID().getS_name2());
             loanResDto.setL_name(loan.getUserID().getL_name());
             loanResDto.setEmail(loan.getUserID().getEmail());
-            loanResDto.setRole(loan.getUserID().getRole());
+//            loanResDto.setRole(loan.getUserID().getRole());
             loanResDto.setStatus(loan.getUserID().getStatus());
             loanResDto.setPassword(loan.getUserID().getPassword());
             loanResDto.setAddress(loan.getUserID().getAddress());

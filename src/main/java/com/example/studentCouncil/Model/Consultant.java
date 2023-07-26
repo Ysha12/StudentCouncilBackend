@@ -19,8 +19,8 @@ public class Consultant {
     @JoinColumn(name = "userID", referencedColumnName = "userID")
     private User userID;
 
-    @OneToMany( mappedBy = "constID", fetch = FetchType.LAZY)
-    private List<Student> studentList;
+//    @OneToMany( mappedBy = "constID", fetch = FetchType.LAZY)
+//    private List<Student> studentList;
 
     @OneToMany( mappedBy = "consultant", fetch = FetchType.LAZY)
     private List<Tips> tipsList;

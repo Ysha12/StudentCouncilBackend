@@ -20,11 +20,13 @@ public class UserController implements UserApi {
     public ResponseEntity getUser(int page, int size){
         return ResponseEntity.ok().body(userService.getUser(page,size));
     }
+    public ResponseEntity getUserById(Long userID) {
 
-    @Override
-    public ResponseEntity addNewUser(UserReqDto user) {
+        return ResponseEntity.ok().body(userService.getUserById(userID));
+    }
 
-        return ResponseEntity.ok().body(userService.addNewUser(user));
+    public ResponseEntity addNewUser(UserReqDto userReqDto) {
+        return ResponseEntity.ok().body(userService.addUser(userReqDto));
     }
     @Override
     public ResponseEntity editUser(Long ID, UserReqDto user) {

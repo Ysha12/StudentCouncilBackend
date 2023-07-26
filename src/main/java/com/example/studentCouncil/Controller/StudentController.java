@@ -17,6 +17,10 @@ public class StudentController implements StudentApi {
     public ResponseEntity getAllStudent(int page, int size){
         return ResponseEntity.ok().body(studentService.getAllStudent(page,size));
     }
+    public ResponseEntity getStudentById(Long userID) {
+
+        return ResponseEntity.ok().body(studentService.getStudentById(userID));
+    }
 
     public ResponseEntity addNewStudent(StudentReqDto stu) {
 

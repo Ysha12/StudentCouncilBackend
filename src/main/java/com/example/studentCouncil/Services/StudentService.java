@@ -2,7 +2,7 @@ package com.example.studentCouncil.Services;
 
 import com.example.studentCouncil.Dto.StudentReqDto;
 import com.example.studentCouncil.Dto.StudentRespondDto;
-import com.example.studentCouncil.Model.Consultant;
+import com.example.studentCouncil.Dto.UserRespondDto;
 import com.example.studentCouncil.Model.Student;
 import com.example.studentCouncil.Model.User;
 import com.example.studentCouncil.Repository.ConsaltantRepository;
@@ -40,19 +40,20 @@ public class StudentService {
          throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id"+"  "+studentReqDto.getUser_id()+"   "+"does not exist");
      }
 
-        Optional<Consultant> c = consaltantRepository.findById(studentReqDto.getConst_id());
-        if(!u.isPresent()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id"+"  "+studentReqDto.getConst_id()+"   "+"does not exist");
-        }
-        Student student1=modelMapper.map(studentReqDto,Student.class);
-        Consultant consultant =c.get();
-        student1.setConstID(consultant);
-        studentRepository.save(student1);
+//        Optional<Consultant> c = consaltantRepository.findById(studentReqDto.getConst_id());
+//        if(!u.isPresent()){
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id"+"  "+studentReqDto.getConst_id()+"   "+"does not exist");
+//        }
 
         Student student = modelMapper.map(studentReqDto, Student.class);
         User user = u.get();
         student.setUserID(user);
         studentRepository.save(student);
+
+//        Student student1=modelMapper.map(studentReqDto,Student.class);
+//        Consultant consultant =c.get();
+//        student1.setConstID(consultant);
+//        studentRepository.save(student1);
 
         Map resp = new HashMap();
         resp.put("resp",Boolean.TRUE);
@@ -70,7 +71,7 @@ public class StudentService {
             studentRespondDto.setS_name2(student.getUserID().getS_name2());
             studentRespondDto.setL_name(student.getUserID().getL_name());
             studentRespondDto.setEmail(student.getUserID().getEmail());
-            studentRespondDto.setRole(student.getUserID().getRole());
+//            studentRespondDto.setRole(student.getUserID().getRole());
             studentRespondDto.setAddress(student.getUserID().getAddress());
             studentRespondDto.setPhoneNumber(student.getUserID().getPhoneNumber());
 
@@ -78,6 +79,32 @@ public class StudentService {
         }
         return list;
     }
+    public StudentRespondDto getStudentById(Long stuID){
+
+        Optional<User> u = userRepository.findById(stuID);
+
+        if(!u.isPresent()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,stuID+"  "+"doesn't exist");
+        }
+        StudentRespondDto studentRespondDto = null;
+
+        for (Student student : studentRepository.findAll()) {
+            studentRespondDto = modelMapper.map(student, StudentRespondDto.class);
+
+            studentRespondDto.setF_name(student.getUserID().getF_name());
+            studentRespondDto.setS_name2(student.getUserID().getS_name2());
+            studentRespondDto.setL_name(student.getUserID().getL_name());
+            studentRespondDto.setEmail(student.getUserID().getEmail());
+            studentRespondDto.setLevelOfEducation(studentRespondDto.getLevelOfEducation());
+//            studentRespondDto.setRole(student.getUserID().getRole());
+            studentRespondDto.setAddress(student.getUserID().getAddress());
+            studentRespondDto.setPhoneNumber(student.getUserID().getPhoneNumber());
+
+//            student.add(studentRespondDto);
+        }
+        return modelMapper.map(u.get(), StudentRespondDto.class);
+    }
+
 //edit student
 public ResponseEntity editStudent(Long stuId, StudentReqDto studentReqDto) throws ResponseStatusException {
     Optional<Student> p = studentRepository.findById(stuId);

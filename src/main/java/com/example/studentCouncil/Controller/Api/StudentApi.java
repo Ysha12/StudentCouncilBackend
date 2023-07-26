@@ -19,6 +19,9 @@ public interface StudentApi {
     @RequestMapping(value = "/{ID}", method = RequestMethod.PUT, produces = "application/json")
     public ResponseEntity editStudent(@PathVariable("ID") Long ID, @RequestBody StudentReqDto studentReqDto);
 
+    @RequestMapping(value = "/getStudentById/{ID}", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity getStudentById(@PathVariable("ID") Long ID);
+
     @RequestMapping(value = "/{ID}", method = RequestMethod.DELETE, produces = "application/json")
     public ResponseEntity deleteStudent(@PathVariable("ID") Long ID);
 

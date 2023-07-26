@@ -15,9 +15,9 @@ public class Student {
     @JoinColumn(name = "userID", referencedColumnName = "userID")
     private User userID;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "constID", referencedColumnName = "consID")
-    private Consultant constID;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "constID", referencedColumnName = "consID")
+//    private Consultant constID;
 //
 //    @OneToMany(mappedBy = "students", fetch = FetchType.LAZY)
 //    private List<StudentConcil> studentConcilList;
