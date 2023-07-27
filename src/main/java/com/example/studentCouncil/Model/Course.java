@@ -19,6 +19,7 @@ public class Course {
     @ManyToOne(cascade =CascadeType.REFRESH)
     @JoinColumn(name = "universityID", referencedColumnName = "uniID")
     private University university;
+
     @OneToMany( mappedBy = "course", fetch = FetchType.LAZY)
     private List<Category> categoryList;
 }

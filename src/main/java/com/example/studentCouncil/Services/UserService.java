@@ -46,7 +46,7 @@ public class UserService {
             list.add(userRespondDto);
         }
         return list;
-    }
+}
     public ResponseEntity<?> addUser (UserReqDto userReqDto) {
         Optional<Role> r = roleRepository.findById(userReqDto.getRoleId());
         modelMapper.getConfiguration().setAmbiguityIgnored(true);

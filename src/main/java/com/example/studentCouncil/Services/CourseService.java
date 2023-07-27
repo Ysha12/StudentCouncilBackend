@@ -33,7 +33,7 @@ public class CourseService {
     public ResponseEntity addNewCourse(CourseReqDto courseReqDto){
         Optional<University> u = universityRepository.findById(courseReqDto.getUniID());
         if(!u.isPresent()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id"+"  "+courseReqDto.getUniID()+"   "+"does not exist");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Course with id"+"  "+courseReqDto.getUniID()+"   "+"does not exist");
         }
         Course course = modelMapper.map(courseReqDto, Course.class);
         University uni = u.get();

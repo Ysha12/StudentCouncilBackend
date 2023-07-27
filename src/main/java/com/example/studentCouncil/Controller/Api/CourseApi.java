@@ -9,7 +9,7 @@ public interface CourseApi {
     public ResponseEntity addNewCourse(@RequestBody CourseReqDto courseReqDto);
 
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity getCourse(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size);
+    public ResponseEntity getCourse(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size);
 
     @RequestMapping(value = "/{ID}", method = RequestMethod.PUT, produces = "application/json")
     public ResponseEntity editCourse(@PathVariable("ID") Long ID, @RequestBody CourseReqDto courseReqDto);
