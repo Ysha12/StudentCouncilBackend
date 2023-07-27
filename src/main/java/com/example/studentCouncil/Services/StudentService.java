@@ -80,7 +80,6 @@ public class StudentService {
         return list;
     }
     public StudentRespondDto getStudentById(Long stuID){
-
         Optional<User> u = userRepository.findById(stuID);
 
         if(!u.isPresent()){
@@ -95,16 +94,21 @@ public class StudentService {
             studentRespondDto.setS_name2(student.getUserID().getS_name2());
             studentRespondDto.setL_name(student.getUserID().getL_name());
             studentRespondDto.setEmail(student.getUserID().getEmail());
-            studentRespondDto.setLevelOfEducation(studentRespondDto.getLevelOfEducation());
-//            studentRespondDto.setRole(student.getUserID().getRole());
+//            studentRespondDto.setLevelOfEducation(studentRepository.findStudentLevelById(student.getUserID().getUserID()));
+           studentRespondDto.setLevelOfEducation(student.getLevelOfEducation());
             studentRespondDto.setAddress(student.getUserID().getAddress());
             studentRespondDto.setPhoneNumber(student.getUserID().getPhoneNumber());
-
-//            student.add(studentRespondDto);
         }
         return modelMapper.map(u.get(), StudentRespondDto.class);
     }
 
+    public StudentRespondDto viewStudentId(Long stuID){
+        Optional<Student> s = studentRepository.findById(stuID);
+        if(!s.isPresent()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,stuID+"  "+"doesn't exist");
+        }
+        return modelMapper.map(s.get(), StudentRespondDto.class);
+    }
 //edit student
 public ResponseEntity editStudent(Long stuId, StudentReqDto studentReqDto) throws ResponseStatusException {
     Optional<Student> p = studentRepository.findById(stuId);

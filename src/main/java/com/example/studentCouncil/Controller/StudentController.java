@@ -33,7 +33,10 @@ public class StudentController implements StudentApi {
 
         return ResponseEntity.ok().body(studentService.deleteStudent(stuId));
     }
+    public ResponseEntity viewStudentId(Long stuID) {
 
+        return ResponseEntity.ok().body(studentService.viewStudentId(stuID));
+    }
 //    s
 
     @Override

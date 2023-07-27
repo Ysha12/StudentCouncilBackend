@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class StudentRespondDto {
-//    private Long stuID;
+    private Long stuID;
     private String levelOfEducation;
 //    private Long ID;
 //    private Long consID;
@@ -14,6 +14,6 @@ public class StudentRespondDto {
     private String l_name;
     private String phoneNumber;
     private String address;
-//    private String role;
+    private String roleName;
     private String Email;
 }

@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(originPatterns = "*")
-@RequestMapping("User")
+@RequestMapping("/User")
 public interface UserApi {
 
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")

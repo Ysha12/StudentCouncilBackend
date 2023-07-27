@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(originPatterns = "*")
-@RequestMapping("Consultant")
+@RequestMapping("/Consultant")
 public interface ConsApi {
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
     public ResponseEntity addNewConsultant(@RequestBody ConsaltantReqDto consaltantReqDto);

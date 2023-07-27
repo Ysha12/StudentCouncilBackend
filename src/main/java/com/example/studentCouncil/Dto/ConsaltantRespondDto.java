@@ -13,7 +13,7 @@ public class ConsaltantRespondDto {
     private String L_name;
     private String phoneNumber;
     private String address;
-    private String role;
+//    private String role;
     private int status;
     private String Email;
     private String password;

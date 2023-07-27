@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 public class Role {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roleId;
     private String roleName;
     private String roleDescription;

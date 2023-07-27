@@ -11,6 +11,7 @@ public class UserRespondDto {
     private String phoneNumber;
     private String address;
     private int roleId;
+    private String roleName;
     private int status;
     private String Email;
     private String password;
