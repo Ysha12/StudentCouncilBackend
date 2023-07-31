@@ -16,7 +16,85 @@ public class UserReqDto {
     private String Email;
     private String password;
 
+    public String getF_name() {
+        return F_name;
+    }
 
+    public void setF_name(String f_name) {
+        F_name = f_name;
+    }
+
+    public String getS_name2() {
+        return s_name2;
+    }
+
+    public void setS_name2(String s_name2) {
+        this.s_name2 = s_name2;
+    }
+
+    public String getL_name() {
+        return L_name;
+    }
+
+    public void setL_name(String l_name) {
+        L_name = l_name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
 
 
