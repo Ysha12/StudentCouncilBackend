@@ -1,7 +1,7 @@
-package com.example.studentCouncil.Repository;
-
-import com.example.studentCouncil.Model.Category;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public interface CategoryRepository extends JpaRepository<Category, Long> {
-}
+//package com.example.studentCouncil.Repository;
+//
+//import com.example.studentCouncil.Model.Category;
+//import org.springframework.data.jpa.repository.JpaRepository;
+//
+//public interface CategoryRepository extends JpaRepository<Category, Long> {
+//}

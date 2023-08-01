@@ -10,12 +10,11 @@ import java.util.List;
 @Entity
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roleId;
     private String roleName;
-    private String roleDescription;
 
     @OneToMany(mappedBy = "role",fetch = FetchType.LAZY)
     private List<User> userList;
+
 
 }

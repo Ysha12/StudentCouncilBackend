@@ -26,7 +26,7 @@ public class SecurityConfig {
                 .disable()
                 .authorizeRequests().antMatchers("/authenticate", "/registerNewUser","/api/consultant/consultants").permitAll()
                 .antMatchers(HttpHeaders.ALLOW,"/swagger-ui/**","/v3/api-docs/**",
-                        "/swagger-resource/*","/User/**","/Course/**","/University/**",
+                        "/swagger-resource/*","/User/**","/Course/**","/University/**","/UniversityCourse/**",
                         "/role/**","/Consultant/**","/Student/**","/api/image/")
                 .permitAll()
                 .anyRequest()

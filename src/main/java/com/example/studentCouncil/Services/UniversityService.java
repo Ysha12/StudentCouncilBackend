@@ -29,13 +29,8 @@ public class UniversityService {
     }
 
     public ResponseEntity addNewUniversity(UniversityReqDto universityReqDto){
-        Optional<User> u = userRepository.findById(universityReqDto.getUseID());
-        if(!u.isPresent()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id"+"  "+universityReqDto.getUseID()+"   "+"does not exist");
-        }
+
         University university = modelMapper.map(universityReqDto, University.class);
-        User user = u.get();
-        university.setUserID(user);
         universityRepository.save(university);
 
         Map resp = new HashMap();

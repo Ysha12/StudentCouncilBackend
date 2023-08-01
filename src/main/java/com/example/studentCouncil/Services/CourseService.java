@@ -31,20 +31,20 @@ public class CourseService {
         this.universityRepository = universityRepository;
     }
     public ResponseEntity addNewCourse(CourseReqDto courseReqDto){
-        Optional<University> u = universityRepository.findById(courseReqDto.getUniID());
-        if(!u.isPresent()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Course with id"+"  "+courseReqDto.getUniID()+"   "+"does not exist");
-        }
+//        Optional<University> u = universityRepository.findById(courseReqDto.getUniID());
+//        if(!u.isPresent()){
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Course with id"+"  "+courseReqDto.getUniID()+"   "+"does not exist");
+//        }
         Course course = modelMapper.map(courseReqDto, Course.class);
-        University uni = u.get();
-        course.setUniversity(uni);
+//        University uni = u.get();
+//        course.setUniversity(uni);
         courseRepository.save(course);
 
         Map resp = new HashMap();
         resp.put("resp",Boolean.TRUE);
         return  ResponseEntity.ok().body(resp);
     }
-    public List<Course> getAllCourse(int page, int size){
+    public ResponseEntity<?> getAllCourse(int page, int size){
         Pageable pageable = PageRequest.of(page,size);
         CourseResDto courseResDto=null;
         List list = new ArrayList();
@@ -52,8 +52,11 @@ public class CourseService {
             courseResDto = modelMapper.map(course, CourseResDto.class);
 
             list.add(courseResDto);
+
         }
-        return list;
+        Map<String, Object> response = new HashMap<>();
+        response.put("body", list);
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
     public ResponseEntity editCourse(Long courseID, CourseReqDto courseReqDto) throws ResponseStatusException {
         Optional<Course> p = courseRepository.findById(courseID);

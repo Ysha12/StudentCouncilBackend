@@ -9,5 +9,4 @@ public class UniversityRespondDto {
     private String uniName;
     private String location;
     private String description;
-    private Long useID;
 }

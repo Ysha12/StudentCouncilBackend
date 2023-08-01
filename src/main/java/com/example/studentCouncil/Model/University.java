@@ -15,10 +15,10 @@ public class University {
     private String uniName;
     private String location;
     private String description;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userID", referencedColumnName = "userID")
-    private User userID;
-
-    @OneToMany( mappedBy = "university", fetch = FetchType.LAZY)
-   private List<Course> courseList;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "userID", referencedColumnName = "userID")
+//    private User userID;
+//
+    @OneToMany( mappedBy = "uniID", fetch = FetchType.LAZY)
+   private List<University> universities;
 }

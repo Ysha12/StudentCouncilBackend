@@ -9,10 +9,9 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 
-@Entity
 @Data
+@Entity
 @Table(name = "users")
-//@Inheritance(strategy = InheritanceType.JOINED)
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +29,6 @@ public class User implements UserDetails {
     private Student stuID;
     private Long consID;
     private Long loanID;
-    private Long uniID;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "roleCode", referencedColumnName = "roleId")
@@ -69,5 +67,9 @@ public class User implements UserDetails {
     public String getPassword(){
         return password;
     }
+
+
+
+
 
 }
